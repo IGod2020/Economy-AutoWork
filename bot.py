@@ -5,18 +5,24 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import warnings
+from datetime import datetime
 
-gmail = ""
-password = ""
+acc = open("acc.txt", "r")
+a = acc.read()
+b = a.split(":")
+
+gmail = b[0]
+password = b[1]
 
 warnings.filterwarnings("ignore")
 options =  webdriver.ChromeOptions()
-options.add_argument('--disable-extensions')
 options.add_argument("--use-fake-ui-for-media-stream")
+options.add_argument('--log-level=3')
+#options.add_argument('headless')
 
 
 
-driver_path = 'C:\\Users\\Windows 11\\Documents\\selenium\\chromedriver.exe'
+driver_path = 'C:\\Users\\Windows\\Documents\\Economy-AutoWork-main\\chromedriver.exe'
 
 driver = webdriver.Chrome(driver_path, chrome_options=options)
 
@@ -28,7 +34,14 @@ def comando():
         time.sleep(30)
         comando()
     else:
-        print("enviando mensaje")
+        now = datetime.now()
+        h = str(now.hour)
+        m = str(now.minute)
+        if len(h) == 1:
+            h = f'0{h}'
+        if len(m) == 1:
+            m = f'0{m}'
+        print(f'Enviando mensaje a las {h}:{m}')
         driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💰┊economy' and @data-slate-editor='true'][@role='textbox']").click()
         driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💰┊economy' and @data-slate-editor='true'][@role='textbox']").send_keys("<work", Keys.ENTER)
 
@@ -48,7 +61,9 @@ def automatico():
                                         'button.marginBottom8-emkd0_.button-1cRKG6.button-f2h6uQ.lookFilled-yCfaCM.colorBrand-I6CyqQ.sizeLarge-3mScP9.fullWidth-fJIsjq.grow-2sR_-F')))\
         .click()
     print("esperando a que discord cargue")
-    WebDriverWait(driver, 20)\
+    driver.implicitly_wait(20)
+    
+    WebDriverWait(driver, 2000)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
                                         'button.button-12Fmur.enabled-9OeuTA.button-f2h6uQ.lookBlank-21BCro.colorBrand-I6CyqQ.grow-2sR_-F')))\
         .click()\
