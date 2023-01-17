@@ -14,6 +14,7 @@ b = a.split(":")
 gmail = b[0]
 password = b[1]
 
+
 warnings.filterwarnings("ignore")
 options =  webdriver.ChromeOptions()
 options.add_argument("--use-fake-ui-for-media-stream")
@@ -41,11 +42,16 @@ def comando():
             h = f'0{h}'
         if len(m) == 1:
             m = f'0{m}'
+        
         print(f'Enviando mensaje a las {h}:{m}')
-        driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💰┊economy' and @data-slate-editor='true'][@role='textbox']").click()
-        driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💰┊economy' and @data-slate-editor='true'][@role='textbox']").send_keys("<work", Keys.ENTER)
+        driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").click()
+        driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").send_keys("<work", Keys.ENTER)
+        
+
 
 def automatico():
+    wc = 0
+    vwc = 0
     WebDriverWait(driver, 20)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
                                         'input#uid_5')))\
@@ -84,10 +90,18 @@ def automatico():
             
             time.sleep(10)
             comando()
+        wc += 1
+        vwc += 1
+        print(f'{wc}:{vwc}')
+        if wc == 10:
+            time.sleep(2)
+            driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").click()
+            driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").send_keys("<dep all", Keys.ENTER)
+            wc = 0
         time.sleep(181)
 
 driver.implicitly_wait(10)
-
+time.sleep(2)
 if "marginTop8-24uXGp marginCenterHorz-574Oxy linkButton-2ax8wP button-f2h6uQ lookLink-15mFoz lowSaturationUnderline-Z6CW6z colorLink-1Md3RZ sizeMin-DfpWCE grow-2sR_-F" in driver.page_source:
     WebDriverWait(driver, 10)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
