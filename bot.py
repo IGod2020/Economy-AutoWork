@@ -54,15 +54,15 @@ def automatico():
     vwc = 0
     WebDriverWait(driver, 20)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                        'input#uid_5')))\
+                                        'input#uid_8')))\
         .send_keys(gmail)
 
     WebDriverWait(driver, 20)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-                                        'input#uid_8')))\
+                                        'input#uid_11')))\
         .send_keys(password)
 
-    WebDriverWait(driver, 20)\
+    WebDriverWait(driver, 2000)\
         .until(EC.element_to_be_clickable((By.CSS_SELECTOR,
                                         'button.marginBottom8-emkd0_.button-1cRKG6.button-f2h6uQ.lookFilled-yCfaCM.colorBrand-I6CyqQ.sizeLarge-3mScP9.fullWidth-fJIsjq.grow-2sR_-F')))\
         .click()
@@ -92,13 +92,15 @@ def automatico():
             comando()
         wc += 1
         vwc += 1
-        print(f'{wc}:{vwc}')
-        if wc == 10:
+        mwc = vwc*5/60
+
+        print(f'------------------------------------------------------------------------------------------------------------------------\nHas enviado {vwc} "<works"\nY has ganado un aproximado de {vwc*200}\nEl bot ha trabajado {round(mwc,1)} horas')
+        if wc == 6:
             time.sleep(2)
             driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").click()
             driver.find_element(By.XPATH, "//div[@aria-label='Enviar mensaje a #💎・⇄﹕economy' and @data-slate-editor='true'][@role='textbox']").send_keys("<dep all", Keys.ENTER)
             wc = 0
-        time.sleep(181)
+        time.sleep(301)
 
 driver.implicitly_wait(10)
 time.sleep(2)
