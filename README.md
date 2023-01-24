@@ -16,4 +16,4 @@ en la consola te da el informe de cuanto debiste haber ganado, cuantas horas usa
 
 
 Aun pueden haber errores, lo que salga enviarlo al dm:
-Wolf2019#0001
+Wolf2019#2979
